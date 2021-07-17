@@ -6,8 +6,7 @@ export const handleRequest = url => {
           return await response.json();
         }
 
-        const errorMessage = await response.text();
-        return Promise.reject(new Error(errorMessage));
+        return Promise.reject(new Error('Could not fetch the result'));
       });
   } catch (error) {
     return Promise.reject(new Error(error.message));
