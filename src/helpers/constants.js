@@ -1,0 +1,1 @@
+export const defaultCharacterApiUrl = 'https://rickandmortyapi.com/api/character';

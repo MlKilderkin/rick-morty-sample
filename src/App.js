@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react';
+import {handleRequest} from "./helpers/fetch";
+import Pagination from "./components/Pagination";
+import {defaultCharacterApiUrl} from "./helpers/constants";
 
-function App() {
+
+const App = () => {
+  const [characters, setCharacters] = useState([]);
+  const [page, setPage] = useState(null);
+  const [prevPage, setPrevPage] = useState(null);
+  const [nextPage, setNextPage] = useState(null);
+
+  useEffect(() => {
+    fetchCharacters(defaultCharacterApiUrl);
+  });
+
+  const fetchCharacters = async (url) => {
+    const {info, results} = await handleRequest(url);
+
+    setPrevPage(info.prev);
+    setNextPage(info.next);
+    setCharacters(results);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={'assignment'}>
+      <Pagination
+        prev={prevPage}
+        next={nextPage}
+        page={page}
+        setActivePage={setPage}
+        fetch={fetchCharacters}
+      />
     </div>
-  );
-}
+  )
+};
 
 export default App;
