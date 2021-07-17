@@ -1,0 +1,87 @@
+.character {
+  max-width: 18rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  border: 0.125rem solid $green-shadow-color;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    overflow: hidden;
+    width: 100%;
+    background-color: $black-color-85;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__info {
+    padding: 1rem;
+    color: $white-color;
+    background-color: $green-shadow-color;
+  }
+
+  &__name {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 2rem;
+  }
+
+  &__meta {
+    margin-bottom: 2rem;
+
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0;
+    }
+  }
+
+  &__extra {
+    margin-bottom: 1rem;
+    line-height: 1.5rem;
+  }
+
+  &__extra-title {
+    font-weight: 600;
+    color: $tiny-orange-color;
+  }
+
+  &__episodes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 4.5rem;
+    overflow-y: auto;
+    align-items: flex-start;
+  }
+
+  &__episodes-title {
+    color: $tiny-orange-color;
+    font-weight: 600;
+    line-height: 1.5rem;
+  }
+
+  &__episode {
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.063rem;
+    border: 1px solid $white-color;
+    margin-bottom: 0.25rem;
+    line-height: 1rem;
+
+    &:hover {
+      color: $green-shadow-color;
+      background-color: $white-color;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .character {
+    max-width: 22rem;
+  }
+}

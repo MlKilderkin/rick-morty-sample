@@ -1,0 +1,22 @@
+html {
+  font-size: 16px;
+  line-height: 1rem;
+  background-color: $white-color;
+  font-family: $font-family-sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: transparent;
+  align-items: center;
+  justify-content: center;
+  color: $black-color;
+}
+
+.assignment {
+  max-width: 1140px;
+  position: relative;
+  overflow: hidden;
+}
