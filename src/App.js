@@ -10,6 +10,7 @@ import "./scss/main.scss";
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [characters, setCharacters] = useState([]);
+  const [locations, setLocations] = useState([]);
   const [episodes, setEpisodes] = useState([]);
   const [prevPage, setPrevPage] = useState(null);
   const [nextPage, setNextPage] = useState(null);
@@ -43,6 +44,23 @@ const App = () => {
     return data;
   };
 
+  const fetchLocation = async (entity) => {
+    if (!entity) {
+      return;
+    }
+
+    const existedLocation = locations.find(item => item.url === entity.url);
+
+    if (existedLocation) {
+      return existedLocation;
+    }
+
+    const location = await handleRequest(entity.url);
+
+    setLocations([...locations, ...[location]]);
+    return location;
+  }
+
   useEffect(() => {
     if (characters.length > 0) {
       return;
@@ -63,7 +81,7 @@ const App = () => {
   }, [characters]);
 
   return (
-    <Context.Provider value={[episodes]}>
+    <Context.Provider value={[episodes, fetchLocation]}>
       <div className={'assignment'}>
         {isLoading && <Loader />}
         {!isLoading && <>

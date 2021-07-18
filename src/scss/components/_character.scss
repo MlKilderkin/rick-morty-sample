@@ -14,6 +14,7 @@
 
     img {
       width: 100%;
+      display: block;
       height: auto;
     }
   }
@@ -83,5 +84,17 @@
 @media screen and (min-width: 1200px) {
   .character {
     max-width: 22rem;
+
+    &__name {
+      margin-bottom: 0.5rem;
+    }
+
+    &__meta {
+      margin-bottom: 0.5rem;
+    }
+
+    &__extra {
+      margin-bottom: 0.5rem;
+    }
   }
 }

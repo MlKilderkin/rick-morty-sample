@@ -1,15 +1,14 @@
 import React, {useContext, useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import {Context} from "../helpers/Context";
-
-const CharacterExtra = ({title, value}) => <div className={'character__extra'}>
-  <div className={'character__extra-title'}>{title}</div>
-  <div className={'character__extra-value'}>{value}</div>
-</div>
+import CharacterExtra from "./CharacterExtra";
+import Popup from "./Popup";
 
 const SingleCharacter = ({info}) => {
-  const [episodes] = useContext(Context);
+  const [episodes, fetchLocation] = useContext(Context);
   const [characterEpisodes, setCharacterEpisodes] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
+  const [locationInfo, setLocationInfo] = useState(null);
 
   const {
     name,
@@ -29,7 +28,22 @@ const SingleCharacter = ({info}) => {
 
     const filteredItems = episodes.filter(({url}) => episode.indexOf(url) >= 0);
     setCharacterEpisodes(filteredItems);
-  }, [episodes, episode])
+  }, [episodes, episode]);
+
+  const handleLocationPopup = async (entity, clickable) => {
+    if (!clickable) {
+      return;
+    }
+
+    const result = await fetchLocation(entity);
+
+    if (!result) {
+      return;
+    }
+
+    setShowPopup(true);
+    setLocationInfo(result);
+  };
 
   return (
     <div className={'character'}>
@@ -44,8 +58,8 @@ const SingleCharacter = ({info}) => {
           <p>{status} - {species}</p>
           <p>{gender}</p>
         </div>
-        <CharacterExtra value={location.name} title={'Location:'} />
-        <CharacterExtra value={origin.name} title={'Origin:'} />
+        <CharacterExtra entity={location} title={'Location:'} showPopup={handleLocationPopup} clickable={true} />
+        <CharacterExtra entity={origin} title={'Origin:'} showPopup={handleLocationPopup} />
         {characterEpisodes && <>
           <div className={'character__episodes-title'}>Episodes:</div>
           <div className={'character__episodes'}>
@@ -54,8 +68,8 @@ const SingleCharacter = ({info}) => {
             ))}
           </div>
         </>}
-
       </div>
+      {showPopup && locationInfo && <Popup entity={locationInfo} title={'Location info'} handlePopup={setShowPopup} />}
     </div>
   )
 };
