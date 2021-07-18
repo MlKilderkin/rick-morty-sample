@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect} from "react";
 import {handleRequest} from "./helpers/fetch";
 import Pagination from "./components/Pagination";
 import {allCharacterApiUrl, allEpisodesApiUrl} from "./helpers/constants";
@@ -59,7 +59,7 @@ const App = () => {
 
     setLocations([...locations, ...[location]]);
     return location;
-  }
+  };
 
   useEffect(() => {
     if (characters.length > 0) {

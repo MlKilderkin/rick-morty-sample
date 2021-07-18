@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "RickMortySPA",
+  "name": "Rick and Morty Simple SPA",
   "icons": [
     {
       "src": "favicon.ico",

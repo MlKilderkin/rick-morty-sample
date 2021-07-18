@@ -12,10 +12,10 @@ const Characters = ({list}) => {
       {list.map((character, index) => <SingleCharacter key={index} info={character} />)}
     </div>
   );
-}
+};
 
 Characters.propTypes = {
   list: PropTypes.array
-}
+};
 
 export default Characters;

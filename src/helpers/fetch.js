@@ -11,4 +11,4 @@ export const handleRequest = url => {
   } catch (error) {
     return Promise.reject(new Error(error.message));
   }
-}
+};

@@ -9,7 +9,7 @@ const CharacterExtra = ({title, entity, showPopup, clickable}) => <div className
   >
     {entity && entity.name}
   </div>
-</div>
+</div>;
 
 CharacterExtra.propTypes = {
   title: PropTypes.string.isRequired,
